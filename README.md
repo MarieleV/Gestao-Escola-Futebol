@@ -171,49 +171,6 @@ O sistema ainda está em desenvolvimento, logo:
 - Expectativa positiva de impacto significativo na rotina da escola de futebol.  
 
 ---
-```
-
-Quer que eu adicione também um **bloco inicial com instruções técnicas** (como instalar, rodar o sistema e tecnologias usadas) no estilo de README de projeto no GitHub, ou prefere manter apenas no formato de relatório/documentação acadêmica?
-
-
-
-
-
-
-
-
-
-
-
-
-----------------------------------------------------------------------------------------------------------------------------------------
-# Arquitetura de Software - VídeosON (VO) 
-
-## Requisitos Funcionais e Não Funcionais v-1.0
-
-Detalhamento dos requisitos da arquitetura da aplicação **VídeosON (VO)** que servem como base para a definição da estrutura do sistema, dos módulos funcionais e das tecnologias adotadas.
-
-### Requisitos Funcionais (RF)
-
-| Código | Descrição                                                                 |
-|--------|---------------------------------------------------------------------------|
-| RF1    | Permitir o cadastro de novos usuários (clientes).                        |
-| RF2    | Realizar autenticação segura dos usuários.                               |
-| RF3    | Permitir a reprodução de vídeos sob demanda.                             |
-| RF4    | Verificar se o vídeo já foi consumido anteriormente pelo cliente.        |
-| RF5    | Garantir a continuidade da reprodução em caso de interrupções.           |
-| RF6    | Tolerar falhas durante a reprodução, com reinicialização automática.     |
-| RF7    | Permitir que administradores publiquem e removam vídeos da plataforma.   |
-
-### Requisitos Não Funcionais (RNF)
-
-| Código | Descrição                                                                 |
-|--------|---------------------------------------------------------------------------|
-| RNF1   | Utilizar serviços de streaming (como YouTube) com suporte a diferentes resoluções e proporções. |
-| RNF2   | Apresentar mensagens informativas padronizadas ao usuário.               |
-| RNF3   | Garantir uma interface responsiva em diferentes dispositivos.            |
-| RNF4   | Adotar práticas de UX Design para fluidez na navegação.                  |
-| RNF5   | Fornecer feedback visual e textual ao usuário em ações relevantes.       |
 
 ## Visão Geral - Macro da Aplicação
 
