@@ -234,10 +234,10 @@ function StudentModal({ student, onClose }: { student: Student, onClose: () => v
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200" onClick={onClose}>
       
       <div 
-        className="bg-zinc-950 border border-zinc-800 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden flex flex-col"
+        className="bg-zinc-900 border border-white/10 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden flex flex-col"
         onClick={e => e.stopPropagation()}
       >
-        <div className="px-6 py-4 border-b border-white/5 flex justify-between items-center bg-zinc-900/50">
+        <div className="px-6 py-4 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
           <h2 className="text-lg font-bold text-zinc-100">Perfil do Aluno</h2>
           <button onClick={onClose} className="p-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-white/10 transition-colors">
             <X size={18} />
@@ -275,7 +275,7 @@ function StudentModal({ student, onClose }: { student: Student, onClose: () => v
               <div className={`p-3 rounded-xl border text-sm font-medium transition-colors
                 ${student.medical !== 'Sem restrições' 
                   ? 'bg-amber-500/5 border-amber-500/20 text-amber-200' 
-                  : 'bg-zinc-900/50 border-white/5 text-zinc-400'
+                  : 'bg-zinc-950/50 border-white/5 text-zinc-400'
                 }
               `}>
                 {student.medical}
@@ -287,7 +287,7 @@ function StudentModal({ student, onClose }: { student: Student, onClose: () => v
             <button className="flex-1 flex justify-center items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-zinc-950 font-bold text-sm py-2.5 rounded-xl transition-colors">
               <Edit size={16} /> Editar
             </button>
-            <button className="flex-1 flex justify-center items-center gap-2 bg-zinc-900/50 hover:bg-white/5 text-zinc-300 border border-white/5 hover:border-white/10 font-bold text-sm py-2.5 rounded-xl transition-colors">
+            <button className="flex-1 flex justify-center items-center gap-2 bg-white/5 hover:bg-white/10 text-zinc-200 border border-white/10 font-bold text-sm py-2.5 rounded-xl transition-colors">
               <FileText size={16} /> Exportar PDF
             </button>
           </div>

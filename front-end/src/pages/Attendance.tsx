@@ -12,7 +12,7 @@ import { getInitials } from '../utils/formatters';
 const getPositionColors = (pos: Position) => {
   const map: Record<string, string> = {
     'Goleiro': 'bg-amber-500/10 text-amber-400 border-amber-500/20',
-    'Zagueiro': 'bg-blue-500/10 text-blue-400 border-blue-500/20',
+    'Zagueiro': 'bg-sky-500/10 text-sky-400 border-sky-500/20',
     'Lateral D': 'bg-purple-500/10 text-purple-400 border-purple-500/20',
     'Lateral E': 'bg-purple-500/10 text-purple-400 border-purple-500/20',
     'Volante': 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
