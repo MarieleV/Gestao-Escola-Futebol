@@ -1,0 +1,10 @@
+{
+  "description": "Centralizes student, team, and game management for football schools, enhancing organization, communication, and safety for coaches and administrators.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
