@@ -110,27 +110,8 @@ Criação de um sistema digital que substitui métodos manuais de gestão de:
 - Filtros de busca de alunos (categoria, nome, posição)
 - Exportação de dados médicos em PDF
 
-### 4.3 Tecnologias Utilizadas
 
-
-| Camada | Tecnologia |
-|:---:|:---:|
-| **Frontend** | HTML, CSS, JavaScript |
-| **Backend** | PHP |
-| **Autenticação** | JWT (JSON Web Token) |
-| **Versionamento** | GitHub |
-| **Gestão de Tarefas** | Trello |
-| **Prototipagem** | Figma |
-
-
-### 4.4 Organização de Responsabilidades
-
-- Desenvolvimento Frontend
-- Desenvolvimento Backend
-- Documentação e organização
-- Suporte ao desenvolvimento
-
-### 4.5 Requisitos Funcionais (RF)
+### 4.4 Requisitos Funcionais (RF)
 
 | Código | Descrição |
 |:---:|---|
@@ -150,7 +131,7 @@ Criação de um sistema digital que substitui métodos manuais de gestão de:
 | **RF14** | O sistema deve permitir o cadastro e visualização de eventos no calendário (treinos, jogos, campeonatos e outros). |
 | **RF15** | O sistema deve permitir registrar presença de alunos nas turmas atribuídas. |
 
-### 4.5.1 Requisitos Não Funcionais (RNF)
+### 4.4.1 Requisitos Não Funcionais (RNF)
 
 | Código | Descrição |
 |:---:|---|
@@ -160,29 +141,6 @@ Criação de um sistema digital que substitui métodos manuais de gestão de:
 | **RNF04** | O sistema deve ser compatível com os navegadores populares. |
 | **RNF05** | O sistema deve realizar backup diário dos dados armazenados. |
 | **RNF06** | O sistema deve ter alta disponibilidade. |
-
-### 4.6 Estruturação dos Módulos e Arquitetura
-
-Modelagem em **diagrama de containers**, representando interação entre:
-
-- Cliente (usuário)
-- Backend (servidor)
-- Banco de Dados
-- Autenticação
-
-### 4.7 Modelagem de Casos de Uso
-
-- **Atores:** Administrador e Colaborador
-- Casos de uso modelados em diagramas, garantindo clareza das interações
-
-### 4.8 Mudanças no Escopo
-
-<table>
-<tr>
-<td width="50%" valign="top">
-
-**Retirado**
-- Módulo de controle financeiro
 
 </td>
 <td width="50%" valign="top">
@@ -194,14 +152,6 @@ Modelagem em **diagrama de containers**, representando interação entre:
 </td>
 </tr>
 </table>
-
-### 4.9 Escopo no Figma
-
-Protótipo criado com foco em:
-
-- Navegação simples
-- Clareza das informações
-- Telas principais: login, gerenciamento de alunos, perfil individual, turmas, calendário, jogos e treinos
 
 ## 5. Avaliação do Projeto pelo Público Beneficiado (Julho-2025)
 
