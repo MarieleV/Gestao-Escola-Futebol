@@ -1,0 +1,300 @@
+// src/pages/Calendar.tsx
+import { useState } from 'react';
+import { 
+  ChevronLeft, ChevronRight, Plus, MapPin, Clock, X, 
+  Calendar as CalendarIcon, Target, Shield, Info
+} from 'lucide-react';
+import { EVENTS } from '../lib/mock-data';
+import { CalEvent } from '../types';
+import { formatDate } from '../utils/formatters';
+
+// --- Helpers Visuais ---
+const getEventStyles = (type: CalEvent['type']) => {
+  const map = {
+    game: { 
+      bg: 'bg-green-500/10 text-green-500 border-green-500/20',
+      pill: 'bg-green-500/20 hover:bg-green-500/30 text-green-400 border-green-500/30',
+      icon: Shield,
+      label: 'Jogo' 
+    },
+    training: { 
+      bg: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
+      pill: 'bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border-blue-500/30',
+      icon: Target,
+      label: 'Treino' 
+    },
+    championship: { 
+      bg: 'bg-amber-500/10 text-amber-500 border-amber-500/20',
+      pill: 'bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 border-amber-500/30',
+      icon: Target,
+      label: 'Campeonato' 
+    },
+    other: { 
+      bg: 'bg-slate-500/10 text-slate-400 border-slate-500/20',
+      pill: 'bg-white/10 hover:bg-white/20 text-slate-300 border-white/10',
+      icon: Info,
+      label: 'Outro' 
+    },
+  };
+  return map[type];
+};
+
+export function Calendar() {
+  const [currentDate, setCurrentDate] = useState(new Date(2025, 6, 1)); // Julho 2025 (fake "hoje" baseado nos mock-data)
+  const [selectedEvent, setSelectedEvent] = useState<CalEvent | null>(null);
+  
+  const today = new Date(); // Data real para destacar o "hoje" real no calendário
+
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth();
+  const monthName = currentDate.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+
+  // Lógica do Calendário (Dias do mês)
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const daysInPrevMonth = new Date(year, month, 0).getDate();
+
+  const cells: { day: number; month: 'prev' | 'curr' | 'next'; dateStr: string }[] = [];
+  
+  // Dias do mês anterior
+  for (let i = firstDay - 1; i >= 0; i--) {
+    const d = daysInPrevMonth - i;
+    const m = month - 1 < 0 ? 11 : month - 1;
+    const y = month - 1 < 0 ? year - 1 : year;
+    cells.push({ day: d, month: 'prev', dateStr: `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}` });
+  }
+  // Dias do mês atual
+  for (let d = 1; d <= daysInMonth; d++) {
+    cells.push({ day: d, month: 'curr', dateStr: `${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}` });
+  }
+  // Dias do próximo mês (para fechar a grade de 7 colunas)
+  let nextDay = 1;
+  while (cells.length % 7 !== 0) {
+    const m = month + 1 > 11 ? 0 : month + 1;
+    const y = month + 1 > 11 ? year + 1 : year;
+    cells.push({ day: nextDay, month: 'next', dateStr: `${y}-${String(m + 1).padStart(2, '0')}-${String(nextDay).padStart(2, '0')}` });
+    nextDay++;
+  }
+
+  // Helpers de Filtragem
+  const eventsOnDay = (dateStr: string) => EVENTS.filter(e => e.date === dateStr);
+  
+  const isFakeToday = (dateStr: string) => {
+    // Como os dados mockados são para Julho 2025, definimos um "hoje" fake para demonstração
+    return dateStr === '2025-07-20'; 
+  };
+
+  const upcomingEvents = EVENTS
+    .filter(e => e.date >= '2025-07-20')
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .slice(0, 4);
+
+  return (
+    <div className="max-w-7xl flex flex-col lg:flex-row gap-8 animate-in fade-in duration-500">
+      
+      {/* 1. Grade do Calendário (Esquerda) */}
+      <div className="flex-1 bg-white/5 border border-white/5 rounded-2xl p-6">
+        
+        {/* Controles de Navegação */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-4">
+            <div className="p-2 bg-white/5 rounded-lg border border-white/10 flex items-center justify-center text-slate-400 hidden sm:flex">
+              <CalendarIcon size={24} />
+            </div>
+            <h2 className="text-2xl font-bold text-slate-200 capitalize">{monthName}</h2>
+          </div>
+          
+          <div className="flex items-center gap-2 bg-[#080d1a] border border-white/10 rounded-lg p-1">
+            <button 
+              onClick={() => setCurrentDate(new Date(year, month - 1, 1))}
+              className="p-1.5 rounded-md text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button 
+              onClick={() => setCurrentDate(new Date(2025, 6, 1))}
+              className="px-3 text-xs font-bold text-slate-500 hover:text-slate-300 transition-colors uppercase tracking-wider"
+            >
+              Hoje
+            </button>
+            <button 
+              onClick={() => setCurrentDate(new Date(year, month + 1, 1))}
+              className="p-1.5 rounded-md text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
+        </div>
+
+        {/* Cabeçalho dos Dias da Semana */}
+        <div className="grid grid-cols-7 gap-2 mb-2">
+          {['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'].map(d => (
+            <div key={d} className="text-center text-xs font-bold text-slate-500 uppercase tracking-widest py-2">
+              {d}
+            </div>
+          ))}
+        </div>
+
+        {/* Grade de Dias */}
+        <div className="grid grid-cols-7 gap-2">
+          {cells.map((cell, i) => {
+            const dayEvents = eventsOnDay(cell.dateStr);
+            const isTod = isFakeToday(cell.dateStr);
+            const isCurrentMonth = cell.month === 'curr';
+
+            return (
+              <div 
+                key={i} 
+                className={`min-h-[100px] p-2 rounded-xl border transition-all
+                  ${isTod ? 'bg-green-500/10 border-green-500/30' : 
+                    isCurrentMonth ? 'bg-[#080d1a]/50 border-white/5 hover:border-white/10' : 
+                    'bg-[#080d1a]/20 border-transparent opacity-50'}
+                `}
+              >
+                <span className={`text-sm font-bold mb-2 flex items-center justify-center w-6 h-6 rounded-full
+                  ${isTod ? 'bg-green-500 text-[#080d1a]' : 'text-slate-400'}
+                `}>
+                  {cell.day}
+                </span>
+                
+                <div className="flex flex-col gap-1.5 mt-1">
+                  {dayEvents.slice(0, 2).map(ev => {
+                    const style = getEventStyles(ev.type);
+                    return (
+                      <div 
+                        key={ev.id} 
+                        onClick={() => setSelectedEvent(ev)}
+                        className={`text-[10px] font-bold px-2 py-1 rounded-md border cursor-pointer truncate transition-colors ${style.pill}`}
+                        title={ev.title}
+                      >
+                        {ev.title}
+                      </div>
+                    )
+                  })}
+                  {dayEvents.length > 2 && (
+                    <div className="text-[10px] font-bold text-slate-500 pl-1">
+                      +{dayEvents.length - 2} mais
+                    </div>
+                  )}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* 2. Sidebar Direita (Próximos Eventos & Legenda) */}
+      <div className="lg:w-80 flex-shrink-0 flex flex-col gap-6">
+        
+        <button className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-[#080d1a] font-bold text-sm py-3 px-4 rounded-xl transition-colors w-full shadow-lg shadow-green-500/20">
+          <Plus size={18} />
+          <span>Agendar Evento</span>
+        </button>
+
+        <div className="bg-white/5 border border-white/5 rounded-2xl p-6">
+          <h3 className="text-sm font-bold text-slate-300 uppercase tracking-widest mb-4">
+            Próximos Dias
+          </h3>
+          <div className="flex flex-col gap-3">
+            {upcomingEvents.map(ev => {
+              const style = getEventStyles(ev.type);
+              const EventIcon = style.icon;
+              
+              return (
+                <div 
+                  key={ev.id} 
+                  onClick={() => setSelectedEvent(ev)}
+                  className="flex items-start gap-3 p-3 rounded-xl bg-[#080d1a] border border-white/5 hover:border-white/10 transition-colors cursor-pointer group"
+                >
+                  <div className={`mt-0.5 w-8 h-8 rounded-lg border flex items-center justify-center flex-shrink-0 ${style.bg}`}>
+                    <EventIcon size={14} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-slate-200 group-hover:text-white transition-colors line-clamp-1">{ev.title}</p>
+                    <p className="text-xs text-slate-500 mt-0.5">{formatDate(ev.date)}</p>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
+        <div className="bg-white/5 border border-white/5 rounded-2xl p-6">
+          <h3 className="text-sm font-bold text-slate-300 uppercase tracking-widest mb-4">
+            Legenda
+          </h3>
+          <div className="flex flex-col gap-3">
+            {(['game', 'training', 'championship', 'other'] as const).map(type => {
+              const style = getEventStyles(type);
+              return (
+                <div key={type} className="flex items-center gap-3">
+                  <div className={`w-3 h-3 rounded-sm border ${style.bg}`} />
+                  <span className="text-sm text-slate-400 font-medium">{style.label}</span>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
+      </div>
+
+      {/* 3. Modal de Detalhes do Evento */}
+      {selectedEvent && (
+        <EventModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
+      )}
+    </div>
+  );
+}
+
+// --- Componente do Modal ---
+function EventModal({ event, onClose }: { event: CalEvent, onClose: () => void }) {
+  const style = getEventStyles(event.type);
+  const EventIcon = style.icon;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200" onClick={onClose}>
+      <div 
+        className="bg-[#0f172a] border border-white/10 rounded-2xl w-full max-w-sm shadow-2xl flex flex-col"
+        onClick={e => e.stopPropagation()}
+      >
+        <div className="px-6 py-4 border-b border-white/10 flex justify-between items-center bg-white/5">
+          <span className={`px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider border flex items-center gap-1.5 ${style.bg}`}>
+            <EventIcon size={12} /> {style.label}
+          </span>
+          <button onClick={onClose} className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors">
+            <X size={18} />
+          </button>
+        </div>
+
+        <div className="p-6">
+          <h2 className="text-xl font-bold text-slate-200 mb-4">{event.title}</h2>
+          
+          <div className="flex flex-col gap-3 mb-6">
+            <div className="flex items-center gap-3 text-slate-400">
+              <Clock size={16} className="text-slate-500" />
+              <span className="text-sm font-medium">{formatDate(event.date)}</span>
+            </div>
+            {/* Como o mock não tem local e hora em todos os eventos, deixamos estático ou omitimos */}
+            <div className="flex items-start gap-3 text-slate-400">
+              <MapPin size={16} className="mt-0.5 text-slate-500 flex-shrink-0" />
+              <span className="text-sm font-medium leading-tight">Local definido pelo treinador ou associação</span>
+            </div>
+          </div>
+
+          {event.description && (
+            <div className="bg-[#080d1a] border border-white/5 rounded-xl p-4">
+              <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5">Descrição / Notas</p>
+              <p className="text-sm text-slate-300 leading-relaxed">{event.description}</p>
+            </div>
+          )}
+
+          <div className="mt-6 pt-6 border-t border-white/5">
+            <button className="w-full bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 font-bold text-sm py-2.5 rounded-lg transition-colors">
+              Editar Evento
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
