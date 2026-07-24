@@ -44,7 +44,7 @@ export function Classes() {
           <h1 className="text-sm font-semibold text-zinc-300 uppercase tracking-widest">Gestão de Turmas</h1>
           <p className="text-xs text-zinc-500 mt-1">{CLASSES.length} turmas ativas no momento</p>
         </div>
-        <button className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-zinc-950 font-bold text-sm py-2 px-4 rounded-xl transition-colors">
+        <button className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-zinc-950 font-semibold text-sm py-2.5 px-4 rounded-xl transition-colors">
           <Plus size={18} />
           <span className="hidden sm:inline">Nova Turma</span>
         </button>
@@ -78,7 +78,9 @@ export function Classes() {
                 <Users size={14} className="text-zinc-500" />
                 <span>Prof. {group.coach}</span>
               </div>
-              <div className="flex items-center gap-2 text-xs text-zinc-400 mb-6 bg-zinc-950/50 p-3 rounded-xl border border-white/5">
+              
+              {/* AQUI: Fundo alterado para bg-transparent e borda para border-white/10 */}
+              <div className="flex items-center gap-2 text-xs text-zinc-400 mb-6 bg-transparent p-3 rounded-xl border border-white/10">
                 <Clock size={14} className="text-zinc-500 flex-shrink-0" />
                 <span className="truncate">{group.schedule}</span>
               </div>
@@ -128,14 +130,14 @@ function ClassModal({ group, onClose }: { group: ClassGroup, onClose: () => void
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200" onClick={onClose}>
       
       <div 
-        className="bg-zinc-900 border border-white/10 rounded-2xl w-full max-w-md shadow-2xl flex flex-col max-h-[90vh]"
+        className="bg-zinc-950 border border-zinc-800 rounded-2xl w-full max-w-md shadow-2xl flex flex-col max-h-[90vh]"
         onClick={e => e.stopPropagation()}
       >
         {/* Header Fixo */}
-        <div className="px-6 py-4 border-b border-white/5 flex justify-between items-start bg-white/[0.02] flex-shrink-0">
+        <div className="px-6 py-4 border-b border-white/5 flex justify-between items-start bg-zinc-900/50 flex-shrink-0 rounded-t-2xl">
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <h2 className="text-xl font-bold text-zinc-100">{group.name}</h2>
+              <h2 className="text-xl font-semibold text-zinc-100">{group.name}</h2>
               <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border ${catStyle}`}>
                 {group.category}
               </span>
@@ -170,7 +172,7 @@ function ClassModal({ group, onClose }: { group: ClassGroup, onClose: () => void
           </h3>
           <div className="flex flex-col gap-2">
             {classStudents.map(student => (
-              <div key={student.id} className="flex justify-between items-center p-3 rounded-xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-colors group">
+              <div key={student.id} className="flex justify-between items-center p-3 rounded-xl bg-zinc-900/30 border border-white/5 hover:border-white/10 transition-colors group">
                 <div className="flex items-center gap-3">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border ${getPositionColors(student.position)}`}>
                     {getInitials(student.name)}
