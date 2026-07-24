@@ -23,7 +23,7 @@
 
 <div align="center">
 
-### 🧭 Sumário
+### 📑 Sumário
 
 [Introdução](#1-introdução) • [Público Beneficiado](#2-descrição-do-público-beneficiado-pelas-ações-de-extensão) • [Objetivos](#3-objetivos) • [Atividades Realizadas](#4-descrição-das-principais-atividades-realizadas) • [Avaliação](#5-avaliação-do-projeto-pelo-público-beneficiado-julho-2025) • [Considerações Finais](#6-considerações-finais--autoavaliação-do-pac-extensionista-julho-2025)
 
