@@ -10,10 +10,11 @@ const getCategoryColors = (cat: Category) => {
   const map: Record<string, string> = {
     'Sub-9': 'bg-fuchsia-500/10 text-fuchsia-400 border-fuchsia-500/20',
     'Sub-11': 'bg-sky-400/10 text-sky-400 border-sky-400/20',
-    'Sub-13': 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+    'Sub-13': 'bg-[#29903B]/10 text-[#29903B] border-[#29903B]/20', 
     'Sub-15': 'bg-amber-500/10 text-amber-400 border-amber-500/20',
     'Sub-17': 'bg-orange-500/10 text-orange-400 border-orange-500/20',
-    'Sub-20': 'bg-rose-500/10 text-rose-400 border-rose-500/20',
+    // Atualizado para o novo vermelho #F85149
+    'Sub-20': 'bg-[#F85149]/10 text-[#F85149] border-[#F85149]/20',
   };
   return map[cat] || 'bg-white/5 text-zinc-400 border-white/10';
 };
@@ -25,9 +26,10 @@ const getPositionColors = (pos: Position) => {
     'Lateral D': 'bg-purple-500/10 text-purple-400 border-purple-500/20',
     'Lateral E': 'bg-purple-500/10 text-purple-400 border-purple-500/20',
     'Volante': 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
-    'Meia': 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-    'Meia-atac.': 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-    'Atacante': 'bg-rose-500/10 text-rose-400 border-rose-500/20',
+    'Meia': 'bg-[#29903B]/10 text-[#29903B] border-[#29903B]/20', 
+    'Meia-atac.': 'bg-[#29903B]/10 text-[#29903B] border-[#29903B]/20', 
+    // Atualizado para o novo vermelho #F85149
+    'Atacante': 'bg-[#F85149]/10 text-[#F85149] border-[#F85149]/20',
   };
   return map[pos] || 'bg-white/5 text-zinc-400 border-white/10';
 };
@@ -44,7 +46,7 @@ export function Classes() {
           <h1 className="text-sm font-semibold text-zinc-300 uppercase tracking-widest">Gestão de Turmas</h1>
           <p className="text-xs text-zinc-500 mt-1">{CLASSES.length} turmas ativas no momento</p>
         </div>
-        <button className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-zinc-950 font-semibold text-sm py-2.5 px-4 rounded-xl transition-colors">
+        <button className="flex items-center gap-2 bg-[#29903B] hover:bg-[#237A32] text-zinc-950 font-semibold text-sm py-2.5 px-4 rounded-xl transition-colors">
           <Plus size={18} />
           <span className="hidden sm:inline">Nova Turma</span>
         </button>
@@ -73,13 +75,12 @@ export function Classes() {
               </div>
 
               {/* Informações Principais */}
-              <h3 className="text-lg font-semibold text-zinc-100 mb-1 group-hover:text-emerald-400 transition-colors">{group.name}</h3>
+              <h3 className="text-lg font-semibold text-zinc-100 mb-1 group-hover:text-[#29903B] transition-colors">{group.name}</h3>
               <div className="flex items-center gap-2 text-sm text-zinc-400 mb-4 font-medium">
                 <Users size={14} className="text-zinc-500" />
                 <span>Prof. {group.coach}</span>
               </div>
               
-              {/* AQUI: Fundo alterado para bg-transparent e borda para border-white/10 */}
               <div className="flex items-center gap-2 text-xs text-zinc-400 mb-6 bg-transparent p-3 rounded-xl border border-white/10">
                 <Clock size={14} className="text-zinc-500 flex-shrink-0" />
                 <span className="truncate">{group.schedule}</span>
@@ -178,7 +179,7 @@ function ClassModal({ group, onClose }: { group: ClassGroup, onClose: () => void
                     {getInitials(student.name)}
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-zinc-200 group-hover:text-emerald-400 transition-colors">{student.name}</p>
+                    <p className="text-sm font-semibold text-zinc-200 group-hover:text-[#29903B] transition-colors">{student.name}</p>
                     <p className="text-[10px] text-zinc-500 font-medium">#{student.number}</p>
                   </div>
                 </div>

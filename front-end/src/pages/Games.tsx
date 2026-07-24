@@ -1,3 +1,4 @@
+// src/pages/Games.tsx
 import { useState } from 'react';
 import { 
   Plus, Calendar as CalendarIcon, MapPin, Clock, 
@@ -43,7 +44,7 @@ export function Games() {
           </button>
         </div>
 
-        <button className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-zinc-950 font-bold text-sm py-2.5 px-4 rounded-xl transition-colors w-full sm:w-auto justify-center">
+        <button className="flex items-center gap-2 bg-[#29903B] hover:bg-[#237A32] text-zinc-950 font-bold text-sm py-2.5 px-4 rounded-xl transition-colors w-full sm:w-auto justify-center">
           <Plus size={18} />
           <span>Novo Jogo</span>
         </button>
@@ -65,7 +66,7 @@ export function Games() {
               {/* Lado Esquerdo: Data e Local */}
               <div className="p-5 md:p-6 md:w-64 flex flex-col justify-center border-b md:border-b-0 md:border-r border-white/5">
                 <div className="flex items-center gap-2 text-zinc-200 font-semibold mb-2">
-                  <CalendarIcon size={16} className="text-emerald-500" />
+                  <CalendarIcon size={16} className="text-[#29903B]" />
                   {formatDate(game.date)}
                 </div>
                 <div className="flex items-center gap-2 text-sm text-zinc-400 mb-1">
@@ -93,7 +94,7 @@ export function Games() {
                   <div className="flex flex-col items-center justify-center px-4">
                     {game.score ? (
                       <div className="flex items-center gap-3 md:gap-4">
-                        <span className={`text-4xl md:text-5xl font-bold ${won ? 'text-emerald-400' : drew ? 'text-zinc-400' : 'text-zinc-500'}`}>
+                        <span className={`text-4xl md:text-5xl font-bold ${won ? 'text-[#29903B]' : drew ? 'text-zinc-400' : 'text-zinc-500'}`}>
                           {game.score.us}
                         </span>
                         <span className="text-zinc-600 font-bold text-2xl">-</span>
@@ -131,13 +132,13 @@ export function Games() {
 
                 {game.score ? (
                   <span className={`px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider w-full text-center md:text-right border
-                    ${won ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : drew ? 'bg-zinc-500/10 text-zinc-400 border-zinc-500/20' : 'bg-rose-500/10 text-rose-400 border-rose-500/20'}
+                    ${won ? 'bg-[#29903B]/10 text-[#29903B] border-[#29903B]/20' : drew ? 'bg-zinc-500/10 text-zinc-400 border-zinc-500/20' : 'bg-rose-500/10 text-rose-400 border-rose-500/20'}
                   `}>
                     {won ? 'Vitória' : drew ? 'Empate' : 'Derrota'}
                   </span>
                 ) : (
                   <span className={`flex items-center justify-center md:justify-end gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider w-full border
-                    ${game.starters.length > 0 ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 'bg-white/5 text-zinc-400 border-white/10'}
+                    ${game.starters.length > 0 ? 'bg-[#29903B]/10 text-[#29903B] border-[#29903B]/20' : 'bg-white/5 text-zinc-400 border-white/10'}
                   `}>
                     {game.starters.length > 0 ? <CheckCircle2 size={12}/> : <AlertCircle size={12}/>}
                     {game.starters.length > 0 ? 'Escalado' : 'Pendente'}
@@ -204,7 +205,7 @@ function GameModal({ game, onClose }: { game: Game, onClose: () => void }) {
             <div className="flex items-center gap-3">
               <h2 className="text-lg font-bold text-zinc-100">vs {game.opponent}</h2>
               {game.score && (
-                <span className={`px-2 py-0.5 rounded text-xs font-bold border ${won ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : drew ? 'bg-zinc-500/10 text-zinc-400 border-zinc-500/20' : 'bg-rose-500/10 text-rose-400 border-rose-500/20'}`}>
+                <span className={`px-2 py-0.5 rounded text-xs font-bold border ${won ? 'bg-[#29903B]/10 text-[#29903B] border-[#29903B]/20' : drew ? 'bg-zinc-500/10 text-zinc-400 border-zinc-500/20' : 'bg-rose-500/10 text-rose-400 border-rose-500/20'}`}>
                   {game.score.us} - {game.score.them}
                 </span>
               )}
@@ -240,7 +241,7 @@ function GameModal({ game, onClose }: { game: Game, onClose: () => void }) {
               Escalação Oficial
             </h3>
             <div className="flex gap-4 text-xs font-bold">
-              <span className="text-emerald-400">{starters.length} Titulares</span>
+              <span className="text-[#29903B]">{starters.length} Titulares</span>
               <span className="text-amber-400">{reserves.length} Reservas</span>
             </div>
           </div>
@@ -254,7 +255,7 @@ function GameModal({ game, onClose }: { game: Game, onClose: () => void }) {
                 <div 
                   key={student.id} 
                   className={`flex items-center justify-between p-2.5 rounded-xl border transition-all ${
-                    isStarter ? 'bg-emerald-500/10 border-emerald-500/20' : 
+                    isStarter ? 'bg-[#29903B]/10 border-[#29903B]/20' : 
                     isReserve ? 'bg-amber-500/10 border-amber-500/20' : 
                     'bg-white/[0.02] border-transparent hover:border-white/10'
                   }`}
@@ -264,7 +265,7 @@ function GameModal({ game, onClose }: { game: Game, onClose: () => void }) {
                       {student.number}
                     </div>
                     <div className="truncate">
-                      <p className={`text-sm font-semibold truncate ${isStarter ? 'text-emerald-400' : isReserve ? 'text-amber-400' : 'text-zinc-300'}`}>
+                      <p className={`text-sm font-semibold truncate ${isStarter ? 'text-[#29903B]' : isReserve ? 'text-amber-400' : 'text-zinc-300'}`}>
                         {student.name.split(' ')[0]} {student.name.split(' ').pop()}
                       </p>
                       <p className="text-[10px] text-zinc-500 font-medium uppercase">{student.position}</p>
@@ -276,7 +277,7 @@ function GameModal({ game, onClose }: { game: Game, onClose: () => void }) {
                     <button 
                       onClick={() => togglePlayer(student.id, 'starter')}
                       className={`w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold transition-colors ${
-                        isStarter ? 'bg-emerald-500 text-zinc-950' : 'bg-white/5 text-zinc-500 hover:bg-emerald-500/20 hover:text-emerald-400'
+                        isStarter ? 'bg-[#29903B] text-zinc-950' : 'bg-white/5 text-zinc-500 hover:bg-[#29903B]/20 hover:text-[#29903B]'
                       }`}
                       title="Marcar como Titular"
                     >
@@ -301,7 +302,7 @@ function GameModal({ game, onClose }: { game: Game, onClose: () => void }) {
         
         {/* Footer */}
         <div className="px-6 py-4 border-t border-white/5 bg-zinc-900/50 flex gap-3 flex-shrink-0">
-          <button className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-zinc-950 font-bold text-sm py-2.5 rounded-xl transition-colors">
+          <button className="flex-1 bg-[#29903B] hover:bg-[#237A32] text-zinc-950 font-bold text-sm py-2.5 rounded-xl transition-colors">
             Salvar Escalação
           </button>
           {game.status === 'upcoming' && (

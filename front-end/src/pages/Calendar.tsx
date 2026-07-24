@@ -12,8 +12,8 @@ import { formatDate } from '../utils/formatters';
 const getEventStyles = (type: CalEvent['type']) => {
   const map = {
     game: { 
-      bg: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
-      pill: 'bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400',
+      bg: 'bg-[#29903B]/10 text-[#29903B] border-[#29903B]/20',
+      pill: 'bg-[#29903B]/10 hover:bg-[#29903B]/20 text-[#29903B]',
       icon: Shield,
       label: 'Jogo' 
     },
@@ -30,8 +30,9 @@ const getEventStyles = (type: CalEvent['type']) => {
       label: 'Campeonato' 
     },
     other: { 
-      bg: 'bg-rose-500/10 text-rose-400 border-rose-500/20',
-      pill: 'bg-rose-500/10 hover:bg-rose-500/20 text-rose-400',
+      // Atualizado para o novo vermelho
+      bg: 'bg-[#F85149]/10 text-[#F85149] border-[#F85149]/20',
+      pill: 'bg-[#F85149]/10 hover:bg-[#F85149]/20 text-[#F85149]',
       icon: Info,
       label: 'Outro' 
     },
@@ -143,14 +144,14 @@ export function Calendar() {
               <div 
                 key={i} 
                 className={`min-h-[100px] p-2 rounded-xl transition-all flex flex-col
-                  ${isTod ? 'bg-emerald-500/5 border border-emerald-500/20' : 
+                  ${isTod ? 'bg-[#29903B]/5 border border-[#29903B]/20' : 
                     isCurrentMonth ? 'bg-zinc-900/30 border border-white/5 hover:border-white/10' : 
                     'opacity-30 pointer-events-none'}
                 `}
               >
                 <div className="flex justify-end mb-2">
                   <span className={`text-xs font-semibold flex items-center justify-center w-6 h-6 rounded-full
-                    ${isTod ? 'bg-emerald-500 text-zinc-950 shadow-sm shadow-emerald-500/20' : 'text-zinc-400'}
+                    ${isTod ? 'bg-[#29903B] text-zinc-950 shadow-sm shadow-[#29903B]/20' : 'text-zinc-400'}
                   `}>
                     {cell.day}
                   </span>
@@ -185,7 +186,7 @@ export function Calendar() {
       {/* 2. Sidebar Direita (Próximos Eventos & Legenda) */}
       <div className="lg:w-80 flex-shrink-0 flex flex-col gap-6">
         
-        <button className="flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-zinc-950 font-bold text-sm py-3 px-4 rounded-xl transition-colors w-full shadow-lg shadow-emerald-500/10">
+        <button className="flex items-center justify-center gap-2 bg-[#29903B] hover:bg-[#237A32] text-zinc-950 font-bold text-sm py-3 px-4 rounded-xl transition-colors w-full shadow-lg shadow-[#29903B]/10">
           <Plus size={18} />
           <span>Agendar Evento</span>
         </button>
@@ -203,7 +204,6 @@ export function Calendar() {
                 <div 
                   key={ev.id} 
                   onClick={() => setSelectedEvent(ev)}
-                  // AQUI: Fundo transparente, borda sutil, hover mais interativo
                   className="flex items-start gap-3 p-3 rounded-xl bg-transparent border border-white/10 hover:border-white/20 hover:bg-white/[0.02] transition-all cursor-pointer group"
                 >
                   <div className={`mt-0.5 w-8 h-8 rounded-lg border flex items-center justify-center flex-shrink-0 ${style.bg}`}>

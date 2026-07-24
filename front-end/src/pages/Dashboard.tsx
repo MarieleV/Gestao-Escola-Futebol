@@ -44,7 +44,7 @@ export function Dashboard() {
                 key={i} 
                 className={`px-4 py-3 rounded-xl border text-sm font-medium transition-colors
                   ${alert.type === 'warning' ? 'bg-amber-500/5 border-amber-500/20 text-amber-200/90' : 
-                    alert.type === 'danger' ? 'bg-rose-500/5 border-rose-500/20 text-rose-200/90' : 
+                    alert.type === 'danger' ? 'bg-[#F85149]/5 border-[#F85149]/20 text-[#F85149]' : 
                     'bg-sky-500/5 border-sky-500/20 text-sky-200/90'}
                 `}
               >
@@ -78,7 +78,7 @@ export function Dashboard() {
                   </div>
                 </div>
                 <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border
-                  ${game.starters.length > 0 ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 'bg-white/5 text-zinc-400 border-white/10'}
+                  ${game.starters.length > 0 ? 'bg-[#29903B]/10 text-[#29903B] border-[#29903B]/20' : 'bg-white/5 text-zinc-400 border-white/10'}
                 `}>
                   {game.starters.length > 0 ? 'Escalado' : 'Pendente'}
                 </span>
@@ -106,7 +106,7 @@ export function Dashboard() {
                   </div>
                   <div className="text-right flex items-center gap-5">
                     <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border
-                      ${won ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : drew ? 'bg-white/5 text-zinc-400 border-white/10' : 'bg-rose-500/10 text-rose-400 border-rose-500/20'}
+                      ${won ? 'bg-[#29903B]/10 text-[#29903B] border-[#29903B]/20' : drew ? 'bg-white/5 text-zinc-400 border-white/10' : 'bg-[#F85149]/10 text-[#F85149] border-[#F85149]/20'}
                     `}>
                       {won ? 'Vitória' : drew ? 'Empate' : 'Derrota'}
                     </span>

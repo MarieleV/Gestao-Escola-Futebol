@@ -21,7 +21,7 @@ export function DashboardLayout() {
 
   return (
     /* Fundo principal em #171717 e textos adaptados para neutral-100 */
-    <div className="min-h-screen bg-[#171717] text-neutral-100 flex font-sans selection:bg-emerald-500/30">
+    <div className="min-h-screen bg-[#171717] text-neutral-100 flex font-sans selection:bg-[#29903B]/30">
 
       {/* 1. Sidebar (Menu Lateral) - Desktop */}
       {/* Ajustado: bg-neutral-900/40 para dar profundidade sem escurecer demais e borda melhor definida */}
@@ -30,12 +30,12 @@ export function DashboardLayout() {
         {/* Header da Sidebar */}
         <div className="h-20 flex items-center px-8 border-b border-white/10">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
-              <Shield className="text-emerald-500" size={24} />
+            <div className="w-10 h-10 rounded-xl bg-[#29903B]/10 border border-[#29903B]/20 flex items-center justify-center">
+              <Shield className="text-[#29903B]" size={24} />
             </div>
             <div>
               <h1 className="font-bold text-lg leading-none tracking-tight">Escolinha</h1>
-              <p className="text-[11px] font-semibold text-emerald-500 uppercase tracking-widest mt-0.5">Admin</p>
+              <p className="text-[11px] font-semibold text-[#29903B] uppercase tracking-widest mt-0.5">Admin</p>
             </div>
           </div>
         </div>
@@ -59,7 +59,7 @@ export function DashboardLayout() {
               >
                 <Icon 
                   size={20} 
-                  className={isActive ? 'text-emerald-500' : 'text-neutral-500 group-hover:text-neutral-400 transition-colors'} 
+                  className={isActive ? 'text-[#29903B]' : 'text-neutral-500 group-hover:text-neutral-400 transition-colors'} 
                 />
                 {item.label}
               </Link>
@@ -80,7 +80,7 @@ export function DashboardLayout() {
             </div>
             <Settings size={16} className="text-neutral-500" />
           </div>
-          <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-rose-500 hover:bg-rose-500/10 transition-colors">
+          <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-[#F85149] hover:bg-[#F85149]/10 transition-colors">
             <LogOut size={16} /> Sair
           </button>
         </div>
@@ -89,7 +89,7 @@ export function DashboardLayout() {
       {/* 2. Menu Mobile (Header + Overlay) */}
       <div className="lg:hidden fixed top-0 left-0 right-0 h-16 border-b border-white/10 bg-[#171717]/80 backdrop-blur-md z-40 flex items-center justify-between px-4">
         <div className="flex items-center gap-2">
-          <Shield className="text-emerald-500" size={24} />
+          <Shield className="text-[#29903B]" size={24} />
           <h1 className="font-bold tracking-tight">Escolinha</h1>
         </div>
         <button 
@@ -115,7 +115,7 @@ export function DashboardLayout() {
                     ${isActive ? 'bg-white/10 text-white font-semibold' : 'text-neutral-400 font-medium'}
                   `}
                 >
-                  <Icon size={20} className={isActive ? 'text-emerald-500' : 'text-neutral-500'} />
+                  <Icon size={20} className={isActive ? 'text-[#29903B]' : 'text-neutral-500'} />
                   {item.label}
                 </Link>
               );
@@ -126,7 +126,8 @@ export function DashboardLayout() {
 
       {/* 3. Área de Conteúdo Principal */}
       <main className="flex-1 flex flex-col min-h-screen pt-16 lg:pt-0 max-w-[100vw] lg:max-w-none overflow-x-hidden relative">
-        <div className="absolute top-0 left-0 w-full h-96 bg-emerald-500/5 blur-[120px] pointer-events-none -z-10" />
+        {/* Glow verde com o novo tom */}
+        <div className="absolute top-0 left-0 w-full h-96 bg-[#29903B]/5 blur-[120px] pointer-events-none -z-10" />
         
         {/* Header Dinâmico */}
         {/* Ajustado: border-white/10 e texto neutral-100 */}
